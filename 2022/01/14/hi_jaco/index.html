@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="安装Nginx的方法有很多：yum源安装、rpm离线安装和编译安装。yum安装Nginx时，许多小众的模块是没有的，这时需要编译安装并在编译前配置我们需要的模块。 安装环境为Debian 10 更新源&amp;&amp;安装依赖安装Nginx添加nginx用户下载Nginx源码配置&amp;&amp;编译软链接创建服务&amp;&amp;开机自启">
+  <meta name="description" content="这也许Jaco的第一篇blog。 ##为什么要写blog？自认为是一个技术宅，其实不过是善于使用搜索引擎罢了，我认为有必要自己学习自己总结，子曰：学而不思则罔。要想摆脱搜索的依赖，需要在每次借鉴学习完毕的基础上，使之内化为自己的知识和能力，不可每次都依靠搜索引擎的结果，于是便有了这个blog ##为什么选择Hexo？起初选择的是Wordpress。作为老牌博客系统，开箱即用。它唯一的缺点是臃肿，许">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译安装Nginx">
-<meta property="og:url" content="http://example.com/2022/01/09/compile_install_Nginx/index.html">
-<meta property="og:site_name" content="WHERE&#39;S JACO AT?">
-<meta property="og:description" content="安装Nginx的方法有很多：yum源安装、rpm离线安装和编译安装。yum安装Nginx时，许多小众的模块是没有的，这时需要编译安装并在编译前配置我们需要的模块。 安装环境为Debian 10 更新源&amp;&amp;安装依赖安装Nginx添加nginx用户下载Nginx源码配置&amp;&amp;编译软链接创建服务&amp;&amp;开机自启">
+<meta property="og:title" content="欢迎我和我的朋友们">
+<meta property="og:url" content="http://example.com/2022/01/14/hi_jaco/index.html">
+<meta property="og:site_name" content="Jaco">
+<meta property="og:description" content="这也许Jaco的第一篇blog。 ##为什么要写blog？自认为是一个技术宅，其实不过是善于使用搜索引擎罢了，我认为有必要自己学习自己总结，子曰：学而不思则罔。要想摆脱搜索的依赖，需要在每次借鉴学习完毕的基础上，使之内化为自己的知识和能力，不可每次都依靠搜索引擎的结果，于是便有了这个blog ##为什么选择Hexo？起初选择的是Wordpress。作为老牌博客系统，开箱即用。它唯一的缺点是臃肿，许">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-01-09T15:13:49.247Z">
-<meta property="article:modified_time" content="2022-01-09T15:21:13.316Z">
+<meta property="article:published_time" content="2022-01-14T13:47:38.203Z">
+<meta property="article:modified_time" content="2022-01-14T13:47:38.204Z">
 <meta property="article:author" content="JACO">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/01/09/compile_install_Nginx/">
+<link rel="canonical" href="http://example.com/2022/01/14/hi_jaco/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>编译安装Nginx | WHERE'S JACO AT?</title>
+  <title>欢迎我和我的朋友们 | Jaco</title>
   
 
 
@@ -96,9 +96,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">WHERE'S JACO AT?</h1>
+      <h1 class="site-title">Jaco</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">今天你学习了吗</p>
   </div>
 
   <div class="site-nav-right">
@@ -150,7 +151,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/compile_install_Nginx/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/14/hi_jaco/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,11 +160,11 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WHERE'S JACO AT?">
+      <meta itemprop="name" content="Jaco">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          编译安装Nginx
+          欢迎我和我的朋友们
         </h1>
 
         <div class="post-meta">
@@ -172,9 +173,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-01-09 23:13:49 / 修改时间：23:21:13" itemprop="dateCreated datePublished" datetime="2022-01-09T23:13:49+08:00">2022-01-09</time>
+              <time title="创建时间：2022-01-14 21:47:38" itemprop="dateCreated datePublished" datetime="2022-01-14T21:47:38+08:00">2022-01-14</time>
             </span>
 
           
@@ -188,9 +188,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>安装Nginx的方法有很多：yum源安装、rpm离线安装和编译安装。yum安装Nginx时，许多小众的模块是没有的，这时需要编译安装并在编译前配置我们需要的模块。</p>
-<p>安装环境为Debian 10</p>
-<h2 id="更新源-amp-amp-安装依赖"><a href="#更新源-amp-amp-安装依赖" class="headerlink" title="更新源&amp;&amp;安装依赖"></a>更新源&amp;&amp;安装依赖</h2><h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><h3 id="添加nginx用户"><a href="#添加nginx用户" class="headerlink" title="添加nginx用户"></a>添加nginx用户</h3><h3 id="下载Nginx源码"><a href="#下载Nginx源码" class="headerlink" title="下载Nginx源码"></a>下载Nginx源码</h3><h3 id="配置-amp-amp-编译"><a href="#配置-amp-amp-编译" class="headerlink" title="配置&amp;&amp;编译"></a>配置&amp;&amp;编译</h3><h3 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h3><h3 id="创建服务-amp-amp-开机自启"><a href="#创建服务-amp-amp-开机自启" class="headerlink" title="创建服务&amp;&amp;开机自启"></a>创建服务&amp;&amp;开机自启</h3>
+        <p>这也许Jaco的第一篇blog。</p>
+<p>##为什么要写blog？<br>自认为是一个技术宅，其实不过是善于使用搜索引擎罢了，我认为有必要自己学习自己总结，子曰：学而不思则罔。要想摆脱搜索的依赖，需要在每次借鉴学习完毕的基础上，使之内化为自己的知识和能力，不可每次都依靠搜索引擎的结果，于是便有了这个blog</p>
+<p>##为什么选择Hexo？<br>起初选择的是Wordpress。作为老牌博客系统，开箱即用。它唯一的缺点是臃肿，许多个性化功能依靠插件实现。配置简单，但是可玩性不高。<br>这是我之前用wordpress搭建的blog=》<a target="_blank" rel="noopener" href="https://blog.jaco.fun/">点此传送</a></p>
+<p>这是我第一次完全手动安装wordpress，从头到尾没有使用一键脚本。并且通过利用Nginx的upstream ssl_preread模块成功配置了Trojan的转发并且保证wordpress的反向代理正常运行。</p>
+<p>实际上，我的Linux水平在这段时间有了较大进步。逐渐了解了文件所有权，执行权限，用户等等。大学期间开小差读过一些linux教程，不过都是云里雾里。</p>
+<p>话说回来，之所以选择Hexo是因为它轻量，渲染快，性能强。它不像wordpress那样可以开箱即用，相反，在安装使用git的时候就给我了一个下马威。为了弄明白git的运行原理又折腾了我小半天。本来我是想一次性把blog部署到我的服务器上，在nodejs的安装上出了写=些问题，npm死活用不了。无奈，只好先部署到GitHub。</p>
+<p>之后又废了些功夫学习github的使用方法，目前我将github page作为测试发布的地方，未来还是会考虑将blog搬到我的服务器上去。</p>
+<p>##还有些要说的<br>建立这个blog的初衷是为了自己更好的总结和学习，当然了，学习的内容不单单是Linux相关的东西，还有金融学、经济学相关的理论讨论（毕竟是鄙人的专业hhhh）。所以，拭目以待吧。</p>
+<p>##最后写给自己<br>“用什么系统不重要，坚持写作才重要”</p>
+
     </div>
 
     
@@ -203,13 +210,6 @@
 
 
         
-    <div class="post-nav">
-      <div class="post-nav-item"></div>
-      <div class="post-nav-item">
-    <a href="/2022/01/09/hello-world/" rel="next" title="Hello World">
-      Hello World <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
       </footer>
     
   </article>
@@ -267,7 +267,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%BA%90-amp-amp-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">更新源&amp;&amp;安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="nav-number">2.</span> <span class="nav-text">安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0nginx%E7%94%A8%E6%88%B7"><span class="nav-number">2.1.</span> <span class="nav-text">添加nginx用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDNginx%E6%BA%90%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">下载Nginx源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-amp-amp-%E7%BC%96%E8%AF%91"><span class="nav-number">2.3.</span> <span class="nav-text">配置&amp;&amp;编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-number">2.4.</span> <span class="nav-text">软链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1-amp-amp-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-number">2.5.</span> <span class="nav-text">创建服务&amp;&amp;开机自启</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -281,7 +280,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
