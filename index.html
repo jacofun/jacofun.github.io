@@ -177,7 +177,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-06 21:59:31" itemprop="dateModified" datetime="2022-02-06T21:59:31+08:00">2022-02-06</time>
+                <time title="修改时间：2022-02-06 22:13:27" itemprop="dateModified" datetime="2022-02-06T22:13:27+08:00">2022-02-06</time>
               </span>
 
           
@@ -191,19 +191,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>###写在前面<br>网上教程更多的是部署到Github，因为大部分操作在本地完成，所以部署起来很快，出错率低。</p>
+          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>网上教程更多的是部署到Github，因为大部分操作在本地完成，所以部署起来很快，出错率低。</p>
 <p>但是由于GitHub的访问速度众人皆知，所以我更倾向于将网站部署到自己的服务器上。然而一旦涉及到服务器，就躲不开在Linux里折腾，对初学者来说安装并配置好一个软件就已经十分不易了，更何况独立部署一个项目。</p>
 <p>我不敢说自己对Linux系统有着多么高深的理解与掌握，因为自己也是从照搬一键脚本的初学者一步一步走过来的。一键脚本可以用，但是最终还是要自己去研究，没有人会一直为你写脚本，更别说很多的一键脚本还藏着后门和漏洞专坑初学者…</p>
-<p>###为什么用Hexo<br>我在<a target="_blank" rel="noopener" href="https://main.jaco.fun/2022/01/14/hi_jaco/">第一篇文章</a>里有写，主要原因还是可玩性强，效率高，速度快。在写第一篇文章的时候就在酝酿怎么将hexo部署到自己的服务器上，今天才算是弄好。</p>
+<h3 id="为什么用Hexo"><a href="#为什么用Hexo" class="headerlink" title="为什么用Hexo"></a>为什么用Hexo</h3><p>我在<a target="_blank" rel="noopener" href="https://main.jaco.fun/2022/01/14/hi_jaco/">第一篇文章</a>里有写，主要原因还是可玩性强，效率高，速度快。在写第一篇文章的时候就在酝酿怎么将hexo部署到自己的服务器上，今天才算是弄好。</p>
 <p>根据我的理解，Hexo是一个生成静态博客页面的框架，hexo的最终产品是页面，因此写作工作在本地进行，接着由Hexo渲染成静态页面，最终部署到Web服务器上即可。相比于Wordpress通过访问Web后台进行编辑及操作要更简单。</p>
 <p>本来画了一张图来阐明Hexo的工作流程，不过在纠结于用Markdown做流程图还是用Powerpoint做，纠结了半天还是以后再说吧。</p>
 <p>但是每次登录Shell上传网页源代码再service nginx reload未免太过麻烦，况且有时只添加一篇post就上传整个网页的源代码未免有些小题大作，于是我们需要配合使用git以及git的hook（钩子）功能。</p>
 <p><img src="/" alt="流程"></p>
 <p>git的作用是版本控制，钩子的作用是侦测到仓库有提交时自动部署，也就是当有代码push的时候，自动更新至网站root文件夹。这样一来，一旦服务器环境搭建完毕，除非必要维护，可以再不用登录服务器操作了。</p>
 <p>对于本地端来说，Hexo的工作需要nodejs做支撑，同时也需要git做版本控制。我建议将Hexo框架的代码（内含配置文件、模板、插件等，即hexo根目录）托管至Github上。</p>
-<p>##服务器配置（Debian 11）</p>
-<p>###1.安装git<br>    $ sudo apt-get update &amp;&amp; install git -y</p>
-<p>###2.配置git用户<br>####添加git用户<br>    $ sudo useradd git<br>    $ sudo passwd git</p>
+<h2 id="服务器配置（Debian-11）"><a href="#服务器配置（Debian-11）" class="headerlink" title="服务器配置（Debian 11）"></a>服务器配置（Debian 11）</h2><p>###1.安装git</p>
+<pre><code>$ sudo apt-get update &amp;&amp; install git -y
+</code></pre>
+<h3 id="2-配置git用户"><a href="#2-配置git用户" class="headerlink" title="2.配置git用户"></a>2.配置git用户</h3><h4 id="添加git用户"><a href="#添加git用户" class="headerlink" title="添加git用户"></a>添加git用户</h4><pre><code>$ sudo useradd git
+$ sudo passwd git
+</code></pre>
 <p>为git用户配置sudo权限：</p>
 <pre><code>$ sudo chmod 740 /etc/sudoers #sudoers默认不可修改
 $ sudo vi /etc/sudoers
@@ -221,19 +224,15 @@ $ sudo vi /etc/sudoers
 <p>注意：如果<kbd>/etc</kbd>中没有sudoers，请先安装sodo</p>
 <pre><code>$ sudo apt-get install sudo
 </code></pre>
-<p>####为git用户添加ssh密钥</p>
-<pre><code>$ su git #切换至git用户
+<h4 id="为git用户添加ssh密钥"><a href="#为git用户添加ssh密钥" class="headerlink" title="为git用户添加ssh密钥"></a>为git用户添加ssh密钥</h4><pre><code>$ su git #切换至git用户
 $ mkdir -p ~/.ssh #在家目录创建.ssh文件夹
 $ ssh-keygen -t rsa 
 $ cat ./id_rsa.pub &gt;&gt; ./authorized_keys 
 </code></pre>
-<p>保存id_rsa</p>
-<p>####修改git用户默认shell</p>
-<pre><code>$ sudo vi /etc/passwd
+<h4 id="修改git用户默认shell"><a href="#修改git用户默认shell" class="headerlink" title="修改git用户默认shell"></a>修改git用户默认shell</h4><pre><code>$ sudo vi /etc/passwd
 </code></pre>
 <p>将git的shell改为<kbd>/usr/bin/git-shell</kbd></p>
-<p>###4.配置git仓库</p>
-<pre><code>$ sudo mkdir -p /var/repo #网页源代码仓库
+<h3 id="4-配置git仓库"><a href="#4-配置git仓库" class="headerlink" title="4.配置git仓库"></a>4.配置git仓库</h3><pre><code>$ sudo mkdir -p /var/repo #网页源代码仓库
 $ sudo mkdir -p /var/www/hexo #网页根目录
 </code></pre>
 <p>在<kbd>/var/repo</kbd>下</p>
@@ -251,19 +250,19 @@ git --work-tree=/var/www/hexo --git-dir=/var/repo/blog.git checkout -f
 <pre><code>$ sudo chown -R git:git /var/repo 
 $ sudo chown -R git:git /var/www/hexo
 </code></pre>
-<p>###5.安装Nginx<br>这块没什么好说的，<kbd>sudo apt-get install nginx -y</kbd>就可以，也可以<a target="_blank" rel="noopener" href="https://main.jaco.fun/2022/01/18/Nginx_install/">编译安装Nginx</a></p>
+<h3 id="5-安装Nginx"><a href="#5-安装Nginx" class="headerlink" title="5.安装Nginx"></a>5.安装Nginx</h3><p>这块没什么好说的，<kbd>sudo apt-get install nginx -y</kbd>就可以，也可以<a target="_blank" rel="noopener" href="https://main.jaco.fun/2022/01/18/Nginx_install/">编译安装Nginx</a></p>
 <p>在配置nginx时，将网页根目录(root)修改为&#x2F;var&#x2F;www&#x2F;hexo</p>
-<p>##本地配置（Windows 10）<br>这一块就简单许多，基本上以gui操作为主</p>
-<p>###1.安装Git和Nodejs<br>在<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>下载Windows版本的git<br>在<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/en/</a>下载Windows版本的Node.js</p>
-<p>安装时使用默认配置，一直下一步直到安装结束。<br>###2.安装hexo</p>
-<p>新建一个文件夹作为本地代码仓库，右键<kbd>Git Bash Here</kbd></p>
+<h2 id="本地配置（Windows-10）"><a href="#本地配置（Windows-10）" class="headerlink" title="本地配置（Windows 10）"></a>本地配置（Windows 10）</h2><p>这一块就简单许多，基本上以gui操作为主</p>
+<h3 id="1-安装Git和Nodejs"><a href="#1-安装Git和Nodejs" class="headerlink" title="1.安装Git和Nodejs"></a>1.安装Git和Nodejs</h3><p>在<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a>下载Windows版本的git<br>在<a target="_blank" rel="noopener" href="https://nodejs.org/">https://nodejs.org/en/</a>下载Windows版本的Node.js</p>
+<p>安装时使用默认配置，一直下一步直到安装结束。</p>
+<h3 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h3><p>新建一个文件夹作为本地代码仓库，右键<kbd>Git Bash Here</kbd></p>
 <pre><code>$ npm install hexo-cli -g
 $ hexo init blog
 $ cd blog
 $ npm install
 </code></pre>
 <p>Hexo框架安装完成。</p>
-<p>###3.推荐安装NexT主题（可选）<br><a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Github项目地址</a></p>
+<h3 id="3-推荐安装NexT主题（可选）"><a href="#3-推荐安装NexT主题（可选）" class="headerlink" title="3.推荐安装NexT主题（可选）"></a>3.推荐安装NexT主题（可选）</h3><p><a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Github项目地址</a></p>
 <p>在<kbd>blog/theme/</kbd>下</p>
 <pre><code>$ git clone git@github.com:next-theme/hexo-theme-next.git
 </code></pre>
@@ -283,8 +282,8 @@ $ npm install
 <pre><code>$ ssh -T ip地址 -p 端口
 </code></pre>
 <p>来测试是否连接成功 </p>
-<p>###4.推荐使用MarkdownPad 2 编辑md文件（可选）<br><a target="_blank" rel="noopener" href="http://markdownpad.com/">http://markdownpad.com/</a></p>
-<p>###5.部署<br>####如何写博文？<br>在<kbd>/blog/source/_posts</kbd>下新建md文件即可</p>
+<h3 id="4-推荐使用MarkdownPad-2-编辑md文件（可选）"><a href="#4-推荐使用MarkdownPad-2-编辑md文件（可选）" class="headerlink" title="4.推荐使用MarkdownPad 2 编辑md文件（可选）"></a>4.推荐使用MarkdownPad 2 编辑md文件（可选）</h3><p><a target="_blank" rel="noopener" href="http://markdownpad.com/">http://markdownpad.com/</a></p>
+<h3 id="5-部署"><a href="#5-部署" class="headerlink" title="5.部署"></a>5.部署</h3><h4 id="如何写博文？"><a href="#如何写博文？" class="headerlink" title="如何写博文？"></a>如何写博文？</h4><p>在<kbd>/blog/source/_posts</kbd>下新建md文件即可</p>
 <pre><code>$ git add -A
 $ git commit -m &quot;Update a new post&quot; #引号内容可自拟
 </code></pre>
